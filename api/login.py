@@ -60,3 +60,6 @@ def handler(request):
             'statusCode': 500,
             'body': 'Server error'
         }
+    
+# Note: This code is designed to run in a serverless environment like Vercel.
+# Changed Node from 22 to 18 to support serverless functions
