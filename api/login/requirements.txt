@@ -1,0 +1,2 @@
+sqlite3firebase-admin
+python-dotenv
