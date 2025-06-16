@@ -11,7 +11,8 @@ def handler(request):
             'body': html
         }
     except Exception as e:
+        print(f"Error: {str(e)}")  # This will appear in Vercel logs
         return {
             'statusCode': 500,
-            'body': f"Error loading page: {str(e)}"
+            'body': "Error loading page"
         }

@@ -19,10 +19,6 @@
       "src": "/login",
       "dest": "/api/login.py",
       "methods": ["POST"]
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
     }
   ]
 }
