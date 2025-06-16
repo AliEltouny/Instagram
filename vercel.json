@@ -14,17 +14,12 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/api/index.py",
-      "methods": ["GET"]
+      "dest": "/api/index.py"
     },
     {
       "src": "/login",
       "dest": "/api/login.py",
       "methods": ["POST"]
-    },
-    {
-      "src": "/(.*)", 
-      "status": 404
     }
   ]
 }

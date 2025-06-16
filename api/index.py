@@ -1,18 +1,10 @@
 def handler(request):
-    try:
-        with open('index.html', 'r') as file:
-            html = file.read()
-        
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'text/html',
-                'Cache-Control': 'no-cache'
-            },
-            'body': html
-        }
-    except Exception as e:
-        return {
-            'statusCode': 500,
-            'body': f"Error loading page: {str(e)}"
-        }
+    with open('../index.html', 'r', encoding='utf-8') as f:
+        html = f.read()
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/html; charset=utf-8'
+        },
+        'body': html
+    }
