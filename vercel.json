@@ -14,7 +14,8 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/api/index.py"
+      "dest": "/api/index.py",
+      "methods": ["GET"]
     },
     {
       "src": "/login",
@@ -22,8 +23,8 @@
       "methods": ["POST"]
     },
     {
-      "src": "/(.*)",
-      "dest": "/api/index.py"
+      "src": "/(.*)", 
+      "status": 404
     }
   ]
 }
