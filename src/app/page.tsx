@@ -2,7 +2,7 @@ import LoginForm from '@/components/LoginForm';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#fafafa] flex flex-col items-center text-[#262626] p-4">
+    <div className="min-h-screen bg-[#fafafa] flex flex-col items-center text-[#262626] p-4 w-full">
       <div className="login-container">
         <div className="login-box">
           <div className="logo">
