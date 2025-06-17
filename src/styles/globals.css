@@ -296,28 +296,43 @@ body {
     padding: 0;
   }
 
-  /* Facebook Login Button - Updated text and styling */
+  /* Facebook Login Button - Updated to match login button exactly */
   .facebook-login {
+    width: 100%;
     padding: 12px;
     background-color: #4150f7;
     color: white;
     border-radius: 8px;
     margin: 0 0 16px 0;
+    font-weight: 600;
     font-size: 14px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    border: none;
+    box-sizing: border-box;
+  }
+
+  .facebook-login > span {
+    display: none;
   }
 
   .facebook-login::before {
-    content: "Continue with Facebook";
-    color: white;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z'/%3E%3C/svg%3E");
-    filter: brightness(0) invert(1);
+    content: "";
+    display: inline-block;
     width: 16px;
     height: 16px;
     margin-right: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: brightness(0) invert(1);
+  }
+  
+  .facebook-login::after {
+    content: "Continue with Facebook";
   }
 
   /* Hide the text span and use pseudo-element for consistent spacing */
@@ -409,7 +424,7 @@ body {
     font-size: 14px;
     border: none;
     height: 44px;
-    order: 5;
+    margin: 8px 0;
   }
 
   /* Footer links */
