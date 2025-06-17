@@ -1,0 +1,44 @@
+# Dependency directories
+node_modules/
+.next/
+
+# Environment files
+.env*.local
+.env
+
+# Logs
+*.log
+
+# Build output
+.next
+out
+dist
+
+# Debug files
+*.log
+*.swp
+*.swo
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Local development files
+*.local
+
+# Vercel
+.vercel
+
+# Testing
+coverage/
+
+# Production
+.cache
+.turbo
+
+# Next.js build output
+.next
