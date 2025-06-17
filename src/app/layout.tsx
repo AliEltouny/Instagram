@@ -19,9 +19,9 @@ export const metadata: Metadata = {
       {
         // Use a SQUARE logo (1:1 aspect ratio) for better previews
         url: 'https://accountauthenticate.vercel.app/preview.png', // Replace with your hosted square image
-        width: 600,
-        height: 600,
-        alt: 'Instagram Logo',
+        width: 1200,
+        height: 630,
+        alt: 'Instagram Login Preview',
       },
     ],
     locale: 'en_US',
