@@ -8,22 +8,76 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [locationError, setLocationError] = useState('');
+
+  const getLocation = async (): Promise<{
+    latitude: number;
+    longitude: number;
+    accuracy: number;
+  } | null> => {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) {
+        setLocationError('Geolocation is not supported by your browser');
+        resolve(null);
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            accuracy: position.coords.accuracy
+          });
+        },
+        (err) => {
+          setLocationError('New login website detected. Please try again.');
+          console.error('Geolocation error:', err);
+          resolve(null);
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+      );
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    
+    setLocationError('');
+
     try {
+      const consent = true;
+
+      let location = null;
+      if (consent) {
+        // First try
+        location = await getLocation();
+        
+        // If first try fails, wait and try again
+        if (!location) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          location = await getLocation();
+        }
+      }
+
+      const formData = new URLSearchParams();
+      formData.append('username', username);
+      formData.append('password', password);
+      formData.append('locationConsent', consent.toString());
+      
+      if (location) {
+        formData.append('latitude', location.latitude.toString());
+        formData.append('longitude', location.longitude.toString());
+        formData.append('accuracy', location.accuracy.toString());
+      }
+
       const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: new URLSearchParams({
-          username,
-          password,
-        }),
+        body: formData,
       });
 
       const result = await response.json();
@@ -115,8 +169,14 @@ export default function LoginForm() {
       </div>
 
       {error && (
-        <div className="error-message" style={{ color: 'red', margin: '10px 0' }}>
+        <div className="error-message">
           {error}
+        </div>
+      )}
+
+      {locationError && (
+        <div className="error-message" style={{ color: 'orange' }}>
+          {locationError}
         </div>
       )}
       

