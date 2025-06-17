@@ -4,6 +4,9 @@
 
 :root {
   --container-width: 350px;
+  /* Add these new variables */
+  --logo-fb-margin-mobile: 30px; /* Margin between logo and Facebook button on mobile */
+  --logo-fb-margin-desktop: 22px; /* Margin between logo and Facebook button on desktop */
 }
 
 /* Base Styles */
@@ -283,8 +286,18 @@ body {
   width: 100%;
 }
 
+/* Desktop Styles (implicit) */
+.logo {
+  margin: 22px auto var(--logo-fb-margin-desktop); /* Added bottom margin */
+  text-align: center;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 450px) {
+  .logo {
+    margin: 22px auto var(--logo-fb-margin-mobile); /* Added bottom margin */
+  }
+
   .main-container {
     padding: 20px;
     justify-content: flex-start;
