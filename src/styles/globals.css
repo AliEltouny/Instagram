@@ -252,55 +252,47 @@ body {
   gap: 4px;
 }
 
-/* Update the mobile responsiveness section */
+/* Mobile Responsiveness */
 @media (max-width: 450px) {
   .login-container {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .login-box, .signup-box {
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 10px;
+    border: none;
+    background-color: transparent;
+    padding: 0 20px;
     width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    max-width: 350px; /* Added max-width to prevent over-stretching */
   }
-
+  
   body {
     justify-content: flex-start;
-    padding: 20px 0;
-    background-color: #fafafa;
+    padding-top: 40px;
+    align-items: center; /* Added to center everything */
   }
-
+  
   .footer-links {
     margin-top: 20px;
+    justify-content: center; /* Ensure links are centered */
     padding: 0 20px;
-    justify-content: center;
-  }
-
-  .footer-links a {
-    margin: 0 8px 8px;
-    font-size: 11px;
+    max-width: 350px; /* Match other content width */
   }
 
   .app-section {
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 350px; /* Match other content width */
+    margin: 0 auto; /* Center the app section */
   }
 
   .copyright {
-    padding: 0 20px;
+    max-width: 350px; /* Match other content width */
+    margin: 0 auto 50px; /* Center the copyright */
     text-align: center;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .login-form input {
-    max-width: 100%;
   }
 }
