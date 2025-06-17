@@ -254,17 +254,11 @@ body {
 
 /* Mobile Responsiveness */
 @media (max-width: 450px) {
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    min-height: 100vh;
-  }
-
   .login-container {
     width: 100%;
     max-width: 350px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -276,12 +270,16 @@ body {
     border: none;
     padding: 0;
     margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
-  /* Facebook Login Button - Now at the top */
+  .signup-box {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 20px 0;
+  }
+
+  /* Facebook Login Button - Now appears first */
   .facebook-login {
     width: 100%;
     padding: 12px;
@@ -296,7 +294,6 @@ body {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    height: 44px;
   }
 
   .facebook-login::before {
@@ -306,6 +303,7 @@ body {
     height: 16px;
     margin-right: 8px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z'/%3E%3C/svg%3E");
+    filter: brightness(0) invert(1);
   }
 
   /* Divider - OR section */
@@ -316,7 +314,6 @@ body {
     color: #8e8e8e;
     font-size: 13px;
     font-weight: 600;
-    width: 100%;
   }
 
   .divider::before,
@@ -327,7 +324,7 @@ body {
     margin: 0 18px;
   }
 
-  /* Login Form */
+  /* Login Form - appears after OR */
   .login-form {
     width: 100%;
   }
@@ -369,43 +366,19 @@ body {
     font-size: 14px;
     border: none;
     height: 44px;
-    margin: 8px 0;
-  }
-
-  /* Signup box */
-  .signup-box {
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    padding: 20px 0;
-    text-align: center;
-  }
-
-  /* App section */
-  .app-section {
-    width: 100%;
-    text-align: center;
-    margin: 20px 0;
   }
 
   /* Footer links */
   .footer-links {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    margin-top: 20px;
     justify-content: center;
-    margin: 20px 0;
     padding: 0;
+    max-width: 350px;
   }
 
-  .footer-links a {
-    margin: 0 8px 8px;
-  }
-
-  /* Copyright */
-  .copyright {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
+  body {
+    justify-content: flex-start;
+    padding: 20px;
+    align-items: center;
   }
 }
