@@ -254,16 +254,83 @@ body {
 
 /* Mobile Responsiveness */
 @media (max-width: 450px) {
-  .login-box, .signup-box {
-    border: none;
-    background-color: transparent;
-    padding: 0;
+  .login-container {
     width: 100%;
     max-width: 350px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-box {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  .signup-box {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 20px 0;
+  }
+
+  /* Facebook Login Button - Now appears first */
+  .facebook-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #4150f7;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .facebook-login::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z'/%3E%3C/svg%3E");
+    filter: brightness(0) invert(1);
+  }
+
+  /* Divider - OR section */
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 0 0 16px 0;
+    color: #8e8e8e;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 0 18px;
+  }
+
+  /* Login Form - appears after OR */
+  .login-form {
+    width: 100%;
   }
 
   .login-form .input-group {
-    margin: 6px 0;
+    margin-bottom: 6px;
     width: 100%;
   }
 
@@ -277,57 +344,41 @@ body {
     font-size: 14px;
   }
 
-  .login-btn, .facebook-login {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    height: 44px;
-    margin: 8px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .login-btn {
-    background-color: #808dfb;
-    color: white;
-    border: none;
-  }
-
-  .facebook-login {
-    background-color: #3579ea;
-    color: white;
-    text-decoration: none;
-    border: none;
-  }
-
-  .facebook-login::before {
-    filter: brightness(0) invert(1); /* Make the Facebook icon white */
-    margin-right: 8px;
-  }
-
-  .divider {
-    margin: 16px 0;
-  }
-
+  /* Forgot Password link */
   .forgot-pw {
     display: block;
-    text-align: center;
-    margin: 16px 0;
+    text-align: right;
+    margin: 12px 0 16px 0;
+    color: #4150f7;
+    font-size: 12px;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  /* Login Button */
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #0095f6;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    height: 44px;
+  }
+
+  /* Footer links */
+  .footer-links {
+    margin-top: 20px;
+    justify-content: center;
+    padding: 0;
+    max-width: 350px;
   }
 
   body {
     justify-content: flex-start;
     padding: 20px;
     align-items: center;
-  }
-
-  .footer-links {
-    margin-top: 20px;
-    justify-content: center;
-    padding: 0;
-    max-width: 350px;
   }
 }
