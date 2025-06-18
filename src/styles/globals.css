@@ -80,7 +80,7 @@ body {
 }
 
 .login-form input {
-  width: 100%;
+  width: 87.5%;
   padding: 14px 8px 2px 8px;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
@@ -100,7 +100,7 @@ body {
 
 .login-form label {
   position: absolute;
-  left: 8px;
+  left: 27px;
   top: 50%;
   transform: translateY(-50%);
   color: #8e8e8e;
@@ -120,7 +120,7 @@ body {
 /* Buttons */
 .show-hide-btn {
   position: absolute;
-  right: 8px;
+  right: 27px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -134,7 +134,7 @@ body {
 }
 
 .login-btn {
-  width: 100%;
+  width: 87.5%;
   padding: 7px 16px;
   margin: 8px 0;
   background-color: #4150f7;
