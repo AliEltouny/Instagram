@@ -403,14 +403,27 @@ body {
     width: 100%;
   }
 
+  .login-form label {
+    left: 8px !important; /* Mobile-specific position */
+    top: 12px !important;
+    transform: none !important;
+  }
+
   .login-form input {
     width: 100%;
-    padding: 12px 8px;
+    padding: 12px 8px !important; /* Mobile padding */
+    padding-top: 16px !important;
     background-color: #fafafa !important;
     border: 1px solid #dbdbdb;
     border-radius: 8px;
     height: 44px;
     font-size: 14px;
+  }
+
+  .login-form input:focus + label,
+  .login-form input:not(:placeholder-shown) + label {
+    left: 8px !important; /* Mobile position when moved up */
+    top: 3px !important;
   }
 
   .forgot-pw {
