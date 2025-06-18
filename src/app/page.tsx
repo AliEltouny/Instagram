@@ -17,7 +17,7 @@ export default function Home() {
           <div className="divider">OR</div>
           
           <a href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Foidc%2F%3Fapp_id%3D124024574287414%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignupviafb%252F%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bprofile%2Blinking%26state%3DATknmvA1Y1GX4tX3C_RL16dZPdzFpItoSnWuUyOTRh72I8R6pLoohF038PZI3AH9-CxZuu67Bn-3HiJqsDrAu-dmxEl95xX0NPHahZkJML47l4eT1UrCjAF4PW7iG5eeI8dVJ-8G1lxQvbQS4hOh3G5sGHrL4s91fEyMX4Crfe56Bws11zXukBNyXRHTbiCkV1WdApr9OnkCDwTbXZV4GdTIcxs3XDK4Y-vVhdWEJT2sI4T2zTrf5PoH5jjoU6EY2IZ4" className="facebook-login">
-            <span className="sr-only">Continue with Facebook</span>
+            <span className="sr-only">Log in with Facebook</span>
           </a>
           <a href="https://www.instagram.com/accounts/password/reset/" className="forgot-pw">
             Forgot password?

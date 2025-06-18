@@ -4,9 +4,9 @@
 
 :root {
   --container-width: 350px;
-  /* Add these new variables */
-  --logo-fb-margin-mobile: 34px; /* Margin between logo and Facebook button on mobile */
-  --logo-fb-margin-desktop: 26px; /* Margin between logo and Facebook button on desktop */
+  --logo-fb-margin-mobile: 34px;
+  --logo-fb-margin-desktop: 26px;
+  --input-button-width: 87.5%;
 }
 
 /* Base Styles */
@@ -80,14 +80,14 @@ body {
 }
 
 .login-form input {
-  width: 87.5%;
+  width: var(--input-button-width);
   padding: 14px 8px 2px 8px;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   background-color: #fafafa !important;
   font-size: 12px;
   color: #262626 !important;
-  height: 44px;
+  height: 36px;
   box-sizing: border-box;
   -webkit-text-fill-color: #262626 !important;
   transition: background-color 5000s ease-in-out 0s;
@@ -134,7 +134,7 @@ body {
 }
 
 .login-btn {
-  width: 87.5%;
+  width: var(--input-button-width);
   padding: 7px 16px;
   margin: 8px 0;
   background-color: #4150f7;
@@ -170,17 +170,21 @@ body {
   margin: 0 18px;
 }
 
-/* Facebook Login */
+/* Facebook Login - Desktop Styles */
 .facebook-login {
   color: #3579ea;
   font-weight: 600;
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   margin: 12px 0;
   font-size: 14px;
-  width: 100%;
+  width: var(--input-button-width);
+}
+
+.facebook-login span {
+  display: inline !important;
 }
 
 .facebook-login::before {
@@ -288,14 +292,14 @@ body {
 
 /* Desktop Styles (implicit) */
 .logo {
-  margin: 26px auto var(--logo-fb-margin-desktop); /* Added bottom margin */
+  margin: 26px auto var(--logo-fb-margin-desktop);
   text-align: center;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 450px) {
   .logo {
-    margin: 26px auto var(--logo-fb-margin-mobile); /* Added bottom margin */
+    margin: 26px auto var(--logo-fb-margin-mobile);
   }
 
   .main-container {
@@ -309,10 +313,10 @@ body {
     padding: 0;
   }
 
-  /* Facebook Login Button - Updated to match login button exactly */
+  /* Facebook Login Button - Mobile Styles */
   .facebook-login {
-    width: 100%;
-    padding: 12px;
+    width: var(--input-button-width);
+    padding: 0px;
     background-color: #4150f7;
     color: white;
     border-radius: 8px;
@@ -328,12 +332,14 @@ body {
     box-sizing: border-box;
   }
 
-  .facebook-login > span {
+  .facebook-login span {
     display: none;
   }
 
   .facebook-login::before {
     content: "";
+    position: absolute;
+    left: 16px;
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -344,16 +350,15 @@ body {
     filter: brightness(0) invert(1);
   }
   
+  /* Only show "Continue with Facebook" text on mobile */
   .facebook-login::after {
     content: "Continue with Facebook";
+    display: inline-block;
+    width: 100%;
+    text-align: center;
   }
 
-  /* Hide the text span and use pseudo-element for consistent spacing */
-  .facebook-login span {
-    display: none;
-  }
-
-  /* Divider - OR section - moved above the form */
+  /* Divider - OR section */
   .divider {
     display: flex;
     align-items: center;
@@ -361,8 +366,8 @@ body {
     color: #8e8e8e;
     font-size: 13px;
     font-weight: 600;
-    width: 100%;
-    order: -1; /* Move above the form */
+    width: var(--input-button-width);
+    order: -1;
   }
 
   .divider::before,
@@ -377,26 +382,20 @@ body {
   .login-box {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
-  /* Make sure Facebook button comes first */
   .facebook-login {
     order: 1;
   }
 
-  /* Then the divider */
   .divider {
     order: 2;
   }
 
-  /* Then the form */
   .login-form {
     order: 3;
-  }
-
-  /* Login Form - appears after OR */
-  .login-form {
-    width: 100%;
+    width: var(--input-button-width);
   }
 
   .login-form .input-group {
@@ -414,7 +413,6 @@ body {
     font-size: 14px;
   }
 
-  /* Forgot Password link */
   .forgot-pw {
     display: block;
     text-align: right;
@@ -422,11 +420,10 @@ body {
     color: #4150f7;
     font-size: 12px;
     text-decoration: none;
-    width: 100%;
+    width: var(--input-button-width);
     order: 4;
   }
 
-  /* Login Button */
   .login-btn {
     width: 100%;
     padding: 12px;
@@ -440,11 +437,19 @@ body {
     margin: 8px 0;
   }
 
-  /* Footer links */
   .footer-links {
     margin-top: 20px;
     justify-content: center;
     padding: 0;
     max-width: 350px;
   }
+}
+
+/* Ensure desktop version shows "Log in with Facebook" */
+.facebook-login::after {
+  display: none; /* Hide the mobile text by default */
+}
+
+.facebook-login span {
+  display: inline; /* Show the regular text on desktop */
 }
